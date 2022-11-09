@@ -2,6 +2,7 @@ var ctx = document.getElementById("chart-bars").getContext("2d");
 
 new Chart(ctx, {
   type: "bar",
+  plugins: [ChartDataLabels],
   data: {
     labels: ["2018", "2019", "2020", "2021"],
     datasets: [
@@ -20,7 +21,15 @@ new Chart(ctx, {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: {},
+      legend: {
+        position: "bottom",
+        margin: 30,
+      },
+      datalabels: {
+        color: "#0f0f0f",
+        anchor: "end",
+        align: "top",
+      },
     },
     interaction: {
       intersect: false,
