@@ -35,6 +35,9 @@
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
   <link id="pagestyle" href="../assets/css/leaflet.css" rel="stylesheet" />
   <!-- <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' /> -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="./assets/js/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100 virtual-reality">
@@ -53,7 +56,24 @@
     </nav>
     <!-- End Navbar -->
   </div>
-  <div id="map" class="border-radius-xl mt-3 mx-3 position-relative" style="background-size: cover; height: 680px;">
+  <div class="row mx-3">
+    <div class="col-12">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox1" value="option1">
+        <label class="form-check-label" for="inlineCheckbox1"><strong>Grid Layer</strong></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox2" value="option2">
+        <label class="form-check-label" for="inlineCheckbox2"><strong>Point of Interest</strong></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox3" value="option2">
+        <label class="form-check-label" for="inlineCheckbox3"><strong>Clusters</strong></label>
+      </div>
+    </div>
+    <div id="map" class="border-radius-xl mt-3 position-relative " style="background-size: cover; height: 680px;"></div>
+  </div>
+
     
   </div>
   <footer class="footer pt-3  ">
@@ -155,15 +175,15 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
-  <script src="../assets/js/leaflet.js"></script>
-  <script src="../assets/geojson/IKP_Kabupaten.js"></script>
-  <script src="../assets/geojson/IKP_Kabupaten_Grid.js"></script>
-
+  <script src="./assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
+  <script src="./assets/js/leaflet.js"></script>
+  <script src="./assets/geojson/IKP_Kabupaten_Bali_Nusra.js"></script>
+  <script src="./assets/geojson/IKP_Kabupaten_Bali_Nusra_Grid.js"></script>
   <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+  <script src="https://unpkg.com/geojson-vt@3.2.0/geojson-vt.js"></script>
+  <script src="./assets/js/leaflet-geojson-vt.js"></script>
   <script>
     function onEachFeature(feature, layer) {
-      console.log(feature)
         // does this feature have a property named popupContent?
         if (feature.properties && feature.properties.Kabupaten) {
             layer.bindPopup(feature.properties.Kabupaten);
@@ -179,22 +199,43 @@
     
     var map = L.map('map')
       .addLayer(mapboxTiles)
-      .setView([-8.4546925,114.7913797], 10);
+      .setView([-8.604598, 119.463048], 7);
     map.scrollWheelZoom.disable();
 
-    let geojsonLayer = L.geoJSON(bali, { style: () => ({
+    let geojsonLayer = L.geoJSON(baliNusra, { style: () => ({
         weight: 1.5,
         opacity: 0.75,
         fillOpacity: 0.0,
         color: 'orange',
     })}).addTo(map);
 
-    L.geoJSON(grid, { onEachFeature: onEachFeature, style: () => ({
-        weight: 1,
-        opacity: 0.75,
-        fillOpacity: 0.1,
-        color: 'blue', //Outline color
-    })}).addTo(map);
+    var options = {
+      maxZoom: 16,
+      tolerance: 3,
+      debug: 0,
+      onEachFeature: onEachFeature,
+      style: {
+        fillColor: "#1EB300",
+        color: "#F2FF00",
+      },
+    };
+    var vtLayer = L.geoJson.vt(grid, options).addTo(map);
+
+    // var gridLayer = L.geoJSON(grid, { onEachFeature: onEachFeature, style: () => ({
+    //     weight: 1,
+    //     opacity: 0.75,
+    //     fillOpacity: 0.1,
+    //     color: 'cyan', //Outline color
+    // })}).addTo(map);
+
+    function renderMap(e) {
+      // console.log(e)
+    }
+    var checkboxElems = document.querySelectorAll(".map-checkbox");
+    checkboxElems.forEach(elem => {
+      console.log(elem)
+      elem.addEventListener("click", renderMap)
+    })
     </script>
 </body>
 
