@@ -520,7 +520,7 @@ map.on("baselayerchange", function (e) {
   } else {
     map.removeControl(legendCluster);
     map.removeControl(legend);
-    select.classList.add("d-inline");
+    select.classList.remove("d-none");
 
     legend.onAdd = function (map) {
       var div = L.DomUtil.create("div", "legend");
