@@ -57,22 +57,38 @@
     </nav>
     <!-- End Navbar -->
   </div>
-  <div class="row mx-3">
-    <div class="col-12">
+  <div class="row mx-3 align-items-end">
+    <div class="col-4">
+        <label for="metrics-select">Select metrics</label>
+        <select class="form-select" aria-label="Default select example" id="metrics-select">
+          <option value="Ketersediaan_PRED">Availability</option>
+          <option value="Keterjangkauan_PRED">Accessibility</option>
+          <option value="Pemanfaatan_PRED">Utilization</option>
+          <option value="IKP_PRED" selected>FSI</option>
+        </select>
+    </div>
+    <div class="col-8">
+      <label for="metrics-select">Select marker</label> <br/>
       <div class="form-check form-check-inline">
-        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1"><strong>Grid Layer</strong></label>
+        <input class="form-check-input marker-checkbox" type="checkbox" id="inlineCheckbox1" value="transportation">
+        <label class="form-check-label" for="inlineCheckbox1">Transportation</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2"><strong>Point of Interest</strong></label>
+        <input class="form-check-input marker-checkbox" type="checkbox" id="inlineCheckbox2" value="healthcare">
+        <label class="form-check-label" for="inlineCheckbox2">Healthcare</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input map-checkbox" type="checkbox" id="inlineCheckbox3" value="option2">
-        <label class="form-check-label" for="inlineCheckbox3"><strong>Clusters</strong></label>
+        <input class="form-check-input marker-checkbox" type="checkbox" id="inlineCheckbox3" value="shop">
+        <label class="form-check-label" for="inlineCheckbox3">Shop</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input marker-checkbox" type="checkbox" id="inlineCheckbox4" value="business-center">
+        <label class="form-check-label" for="inlineCheckbox4">Business Center</label>
       </div>
     </div>
-    <div id="map" class="border-radius-xl mt-3 position-relative " style="background-size: cover; height: 680px;"></div>
+    <div class="col-12">
+      <div id="map" class="border-radius-xl mt-3 position-relative " style="background-size: cover; height: 680px;"></div>
+    </div>
   </div>
 
     
@@ -180,9 +196,10 @@
   <script src="./assets/js/leaflet.js"></script>
   <script src="./assets/geojson/RESULT PRED_2022.js"></script>
   <script src="./assets/geojson/RESULT PRED_2021.js"></script>
-  <script src="./assets/geojson/RESULT PRED_2020.js"></script>
-  <script src="./assets/geojson/RESULT PRED_2019.js"></script>
-  <script src="./assets/geojson/RESULT PRED_2018.js"></script>
+  <script src="./assets/geojson/poi_business_new.js"></script>
+  <script src="./assets/geojson/poi_healthcare_new.js"></script>
+  <script src="./assets/geojson/poi_shop_new.js"></script>
+  <script src="./assets/geojson/poi_transportation_new.js"></script>
   
   <!-- note: avoid v3.1.0, has color issue -->
   <script src="https://unpkg.com/leaflet.glify@3.0.2/dist/glify-browser.js"></script>
