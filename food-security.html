@@ -34,6 +34,7 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
   <link id="pagestyle" href="../assets/css/leaflet.css" rel="stylesheet" />
+  <link id="pagestyle" href="../assets/css/custom.css" rel="stylesheet" />
   <!-- <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' /> -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="./assets/js/sweetalert2.min.js"></script>
@@ -178,6 +179,8 @@
   <script src="./assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
   <script src="./assets/js/leaflet.js"></script>
   <script src="./assets/geojson/IKP_Kabupaten_Bali_Nusra.js"></script>
+  <script src="./assets/geojson/POI_TRANSPORTATION_2022_N.js"></script>
+  <script src="./assets/geojson/highway_balinustra_simplify2.js"></script>
   <script src="./assets/geojson/IKP_Kabupaten_Bali_Nusra_Grid.js"></script>
   <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
   
@@ -187,134 +190,9 @@
   <!-- the plugin -->
   <script src="./assets/js/leaflet-glify-layer.js"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <script>
-    function onEachFeature(feature, layer) {
-        // does this feature have a property named popupContent?
-        if (feature.properties && feature.properties.Kabupaten) {
-            layer.bindPopup(feature.properties.Kabupaten);
-        }
-    }
-
-    function showLoading(show) {
-      if (show) {
-        Swal.fire({
-              title: "loading...",
-              color: "#fdfdfd",
-              html: `<lottie-player src="./assets/json/loading-maps.json"  background="transparent"  speed="1"  loop autoplay></lottie-player>`,
-              background: "rgba(255,255,255,0)",
-              allowOutsideClick: false,
-              showConfirmButton: false,
-            })
-      } else {
-        Swal.close();
-      }
-    }
+  <script src="./assets/js/maps.js">
     
-    showLoading(true);
-
-    var map = L.map('map')
-      // .addLayer(mapboxTiles)
-      .setView([-8.604598, 119.463048], 7);
-    map.scrollWheelZoom.disable();
-    
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    let geojsonLayer = L.geoJSON(baliNusra, { style: () => ({
-        weight: 1.5,
-        opacity: 0.75,
-        fillOpacity: 0.0,
-        color: 'orange',
-    })}).addTo(map);
-
-    // var gridLayer = L.geoJSON(grid, { onEachFeature: onEachFeature, style: () => ({
-    //     weight: 1,
-    //     opacity: 0.75,
-    //     fillOpacity: 0.1,
-    //     color: 'cyan', //Outline color
-    // })}).addTo(map);
-    const layer = L.glify.layer({
-        geojson: grid,
-        paneName: 'foo',
-        glifyOptions: {
-            color: (index, feature) => {
-              let colorScheme = {
-                  r:50/255,
-                  g:205/255,
-                  b:50/255,
-                  a:1
-              };
-              if (feature.properties?.IKP_2020 <=59.58){
-                colorScheme = {
-                  r:255/255,
-                  g:128/255,
-                  b:114/255,
-                  a:1
-                };
-              } else if (feature.properties?.IKP_2020 <=67.75) {
-                colorScheme = {
-                  r:255/255,
-                  g:165/255,
-                  b:0,
-                  a:1
-                };
-              } else if (feature.properties?.IKP_2020 <=75.68) {
-                colorScheme = {
-                  r:173/255,
-                  g:255/255,
-                  b:47/255,
-                  a:1
-                };
-              }
-              return colorScheme;
-            },
-            size: 30,
-            opacity: 0.8,
-            click (e, feature, xy) {
-                if (Array.isArray(feature)){
-                    L.popup()
-                    // its a [lng,lat] 
-                    // .setLatLng(feature.reverse())
-                    .setContent(`You clicked on a point`)
-                    .openOn(map);
-                } else {
-                    L.popup()
-                    .setLatLng(e.latlng)
-                    .setContent('Nilai IKP ' + feature.properties.IKP_2020)
-                    .openOn(map);
-                }   
-            },
-            sensitivity: 3,
-            hover(e, feature) {
-                console.log('hover', feature);
-            }        
-        },
-        onAdd(){
-          showLoading(true);
-        },
-        onLayersInit(){
-            console.log('onLayersInit callback');
-            showLoading(false);
-        },
-        onRemove(){
-            console.log('onRemove callback');
-        },
-    }); 
-
-    const layerControl = L.control.layers({}, { 'Granular Grid': layer, 'Administrative boundaries':  geojsonLayer}, { collapsed: false });
-    layerControl.addTo(map);
-    layer.addTo(map);     
-
-    function renderMap(e) {
-      // console.log(e)
-    }
-    var checkboxElems = document.querySelectorAll(".map-checkbox");
-    checkboxElems.forEach(elem => {
-      elem.addEventListener("click", renderMap)
-    })
-    </script>
+  </script>
 </body>
 
 </html>
