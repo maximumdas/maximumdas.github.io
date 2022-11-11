@@ -41,7 +41,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
     <div class="container">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboard.html">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="#">
         Foodoo
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -345,62 +345,29 @@
       <div class="container mt-5">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center mx-auto" data-cues="slideInDown" data-duration="500" data-group="header">
-            <h1 class="text-black mb-2 mt-5">Result and Discussion</h1>
+            <h1 class="text-black mb-2 mt-5">Result</h1>
             <p class="text-lead text-black">Knowledge output from this project.</p>
           </div>
         </div>
       </div>
 
-      <div class="container mt-5">
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
             <div class="card z-index-0">
-              <div class="card-header text-center pt-4 pb-0">
-                <h4 class="font-weight-bolder">Random Forest Model</h4>
-              </div>
               <div class="card-body">
-                <div class="row justify-content-center">
-                  <p class=" text-justify" style="text-indent: 1em">
-                    Based on <a class="link-references" href="https://www.fao.org/3/cc0639en/online/sofi-2022/food-security-nutrition-indicators.html#tab3" target="__blank"><u>FAO</u></a> data, it is known that
-                    In 2021, an estimated 29.3 percent of the global population – 2.3 billion people – were moderately or severely food insecure, 
-                    meaning they did not have access to adequate food (Table 3 and Table 4). Although the number remained relatively stable between 
-                    2020 and 2021, more than 350 million more people were affected by moderate or severe food insecurity in 2021 compared to 2019, 
-                    the year before the COVID-19 pandemic unfolded.
+                <div class="row justify-content-center" data-cues="slideInDown" data-duration="500" data-group="result">
+                  <p class="text-justify fw-bold" style="text-indent: 1em">
+                    Hands on to our Foodoo Geographic Information Sistem for better understanding to our analysis.
                   </p>
-                  <div class="col-4">
-                    <h5>Availability</h5>
-                    <div class="bg-gradient-white border-radius-lg py-3 pe-1 mb-3 border">
-                      <div class="chart">
-                        <canvas id="chart-availability" class="chart-canvas" height="200"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <h5>Accessibility</h5>
-                    <div class="bg-gradient-white border-radius-lg py-3 pe-1 mb-3 border">
-                      <div class="chart">
-                        <canvas id="chart-access" class="chart-canvas" height="200"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <h5>Utilization</h5>
-                    <div class="bg-gradient-white border-radius-lg py-3 pe-1 mb-3 border">
-                      <div class="chart">
-                        <canvas id="chart-util" class="chart-canvas" height="200"></canvas>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-12">
-                    <p class="text-justify" style="text-indent: 1em">
-                      It is estimated that between 702 and 828 million people were affected by hunger in 2021. 
-                      The number has grown by about 150 million since the outbreak of the COVID-19 pandemic – 
-                      103 million more people between 2019 and 2020 and 46 million more in 2021, considering the middle of the projected range.
-                    </p>
-                    <p class="text-justify" style="text-indent: 1em">
-                      Worse situation became worst when the Russia-Ukraine war broke out and President Vladimir putin <a class="link-references" href="https://www.bbc.com/news/business-60689279" target="__blank">retaliated against the 
-                      sanctions of the Nato</a> countries by stopping the export of various commodities, one of which was food and agricultural products.
-                    </p>
+                    <div class="bg-gradient-white py-3 pe-1 mb-3">
+                      <div class="text-center">
+                        <a href="./food-security.html" class="btn btn-outline w-100 text-primary">
+                          <h4>Click Here !!</h4>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -414,12 +381,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mb-4 mx-auto text-center">
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            <a href="./references.html" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
               References
             </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            <!-- <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
               Team
-            </a>
+            </a> -->
           </div>
         </div>
         <div class="row">
