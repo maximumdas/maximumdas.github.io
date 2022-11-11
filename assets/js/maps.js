@@ -50,9 +50,6 @@ function showLoading(show) {
 
 function resolveClusterColor(index, feature) {
   let props = "cluster";
-  if (selectedLayer != "") {
-    props = selectedLayer;
-  }
   let colorScheme = {
     r: 12 / 255,
     g: 83 / 255,
